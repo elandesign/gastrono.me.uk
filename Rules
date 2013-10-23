@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 # A few helpful tips about the Rules file:
 #
 # * The string given to #compile and #route are matching patterns for
@@ -13,7 +12,11 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/stylesheet/' do
+compile '/stylesheets/*' do
+  # don’t filter or layout
+end
+
+compile '/javascripts/*' do
   # don’t filter or layout
 end
 
@@ -31,8 +34,12 @@ compile '*' do
   end
 end
 
-route '/stylesheet/' do
-  '/style.css'
+route '/stylesheets/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/javascripts/*' do
+  item.identifier.chop + '.' + item[:extension]
 end
 
 route '*' do
