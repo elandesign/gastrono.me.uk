@@ -12,7 +12,7 @@
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
     <link href="/stylesheets/gastronome.css" rel="stylesheet">
 
-    <title>A Brand New nanoc Site - <%= @item[:title] %></title>
+    <title><%= @item[:title] %> :: gastrono.me.uk</title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,8 +29,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
+            <%= navigation 'Home', '/', /^\/$/ %>
+            <%= navigation 'Recipes', '/recipes/', /^\/recipes/ %>
+            <%= navigation 'About', '/about/', /^\/about/ %>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
@@ -50,6 +51,9 @@
 
       <hr>
 
+      <pre><code>
+      <%= @item.path %>
+    </code></pre>
       <footer>
         <p>&copy; Paul Smith 2013</p>
       </footer>
